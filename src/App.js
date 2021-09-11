@@ -9,6 +9,7 @@ import {auth} from "./Components/Config/Firebase";
 
 import {useDispatch, useSelector} from "react-redux";
 import { login, logout, selectUser } from "./Components/Store/UserSlice";
+import ProfileScreen from "./Pages/ProfileScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -24,23 +25,24 @@ function App() {
         }));
       
       } else {
-        dispatch(logout)
+        dispatch(logout())
       }
 
       return unSubscribe;
       
     });
 
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="app">
         {!user ? (
           <FrontPage />
         ) : (
           <Switch>
             <Route exact path="/" component={HomeScreen} />
+            <Route path="/profile" component={ProfileScreen} />
           </Switch>
         )}
       </div>

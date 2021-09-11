@@ -7,11 +7,10 @@ const FrontPage = () => {
 
   return (
     <div className="frontpage">
-      <div className="navbar">
+      <div className="header-wrapper">
         <img
           className="logo"
           alt="Netflix logo"
-          // src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
         />
         <button className="btnSignIn" onClick={() => setSignIn(true)}>

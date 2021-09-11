@@ -1,12 +1,13 @@
 import React, {useRef} from "react";
 import {auth} from "../Components/Config/Firebase";
-import "../Styles/Pages/SignInScreen.scss";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-const SignInScreen = () => {
+import "../Styles/Pages/SignInScreen.scss";
+
+const SignIn = () => {
   const emailRef = useRef(null);
   const pwdRef = useRef(null);
 
@@ -18,8 +19,6 @@ const SignInScreen = () => {
       pwdRef.current.value
     )
       .then((authUser) => {
-        const user = authUser.user;
-
         console.log(authUser);
       })
       .catch((error) => {
@@ -68,4 +67,4 @@ const SignInScreen = () => {
   );
 };
 
-export default SignInScreen;
+export default SignIn;
