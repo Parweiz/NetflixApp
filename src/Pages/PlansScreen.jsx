@@ -18,27 +18,8 @@ import {loadStripe} from "@stripe/stripe-js";
 
 const PlansScreen = () => {
   const [products, setProducts] = useState([]);
-  const user = useSelector(selectUser);
   const [subscription, setSubscription] = useState(null);
-
-  useEffect(() => {
-    async function fetchSubscriptions() {
-      const d = doc(db, "customers", user.uid);
-      const docRef = collection(d, "subscriptions");
-
-      await getDocs(docRef).then((querySnapshot) => {
-        querySnapshot.forEach(async (subscription) => {
-          setSubscription({
-            role: subscription.data().role,
-            current_period_end: subscription.data().current_period_end.seconds,
-            current_period_start:
-              subscription.data().current_period_start.seconds,
-          });
-        });
-      });
-    }
-    fetchSubscriptions();
-  }, [user.uid]);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     async function fetchData() {
@@ -63,6 +44,25 @@ const PlansScreen = () => {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    async function fetchSubscriptions() {
+      const docRef = doc(db, "customers", user.uid);
+      const collectn = collection(docRef, "subscriptions");
+
+      await getDocs(collectn).then((querySnapshot) => {
+        querySnapshot.forEach(async (subscription) => {
+          setSubscription({
+            role: subscription.data().role,
+            current_period_end: subscription.data().current_period_end.seconds,
+            current_period_start:
+              subscription.data().current_period_start.seconds,
+          });
+        });
+      });
+    }
+    fetchSubscriptions();
+  }, [user.uid]);
 
   console.log(subscription);
 
@@ -109,7 +109,7 @@ const PlansScreen = () => {
             className={`${isCurrentPage && "plan_disabled"} plan`}
             key={productId}
           >
-            <div className="info">
+            <div className="planInfo">
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>

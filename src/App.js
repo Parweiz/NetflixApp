@@ -1,15 +1,15 @@
 import React, {useEffect} from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import HomeScreen from "./Pages/HomeScreen";
-import "./App.css";
-
-import FrontPage from "./Pages/FrontPage"
 import {onAuthStateChanged} from "firebase/auth";
 import {auth} from "./Components/Config/Firebase";
 
+import HomeScreen from "./Pages/HomeScreen";
+import FrontScreen from "./Pages/FrontScreen";
+import ProfileScreen from "./Pages/ProfileScreen";
 import {useDispatch, useSelector} from "react-redux";
 import { login, logout, selectUser } from "./Components/Store/UserSlice";
-import ProfileScreen from "./Pages/ProfileScreen";
+
+import "./App.css";
 
 function App() {
   const user = useSelector(selectUser);
@@ -21,7 +21,6 @@ function App() {
         dispatch(login({
           uid: userAuth.uid,
           email: userAuth.email,
-
         }));
       
       } else {
@@ -38,7 +37,7 @@ function App() {
     <BrowserRouter>
       <div className="app">
         {!user ? (
-          <FrontPage />
+          <FrontScreen />
         ) : (
           <Switch>
             <Route exact path="/" component={HomeScreen} />

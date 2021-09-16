@@ -1,12 +1,12 @@
 .profileScreen {
   height: 100vh;
-  color: white;
+  color: #fff;
+
   .body {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     padding-top: 8%;
     max-width: 800px;
 
@@ -22,7 +22,7 @@
         height: 100px;
       }
 
-      .details {
+      .detailsContainer {
         color: #fff;
         margin-left: 25px;
         flex: 1 1;
@@ -33,7 +33,7 @@
           padding: 15px 15px 15px 20px;
         }
 
-        .plans {
+        .plansContainer {
           margin-top: 20px;
           h3 {
             border-bottom: 1px solid #282c2d;
